@@ -2,12 +2,11 @@
 </head>
 <body>
 	<h2>My Todos</h2>
-
-  <!-- <div class="list"></div> -->
   <ul>
 
   </ul>
 
+  <button id="refresh">Refresh</button>
 
   <script>
     // require electron and ipcRenderer
@@ -15,12 +14,19 @@
     const {ipcRenderer } = electron;
     // listen for todo:add from Electron App
     ipcRenderer.on('todo:add', (event, todo) => {
-      console.log(todo);
       const li = document.createElement('li');
       const text = document.createTextNode(todo);
       li.appendChild(text);
       document.querySelector('ul').appendChild(li);
     });
+
+
+    document.getElementById('refresh').addEventListener ('click', (event) => {
+      console.log("WORLD");
+      // send signal to Electron App
+      ipcRenderer.send('refresh:button')
+    });
+
 
   </script>
 </body>

@@ -48,6 +48,14 @@ ipcMain.on('todo:add', (event, todo) => {
 });
 
 
+// listen for refresh:button (from main.html)
+ipcMain.on('refresh:button', (event, todo) => {
+  mainWindow.reload();
+});
+
+
+
+
 // menu template
 const menuTemplate = [
 {
@@ -79,6 +87,7 @@ if (process.env.NODE_ENV !== 'production') {
   menuTemplate.push({
     label: 'Developer',
       submenu: [
+        { role: 'reload'}, // electron preset role
         { 
           label: 'Toggle Developer Tools',
           accelerator: process.platform === 'darwin' ? 'Command+Alt+I' : 'Ctrl+Shift+I',
