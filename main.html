@@ -2,4 +2,25 @@
 </head>
 <body>
 	<h2>My Todos</h2>
+
+  <!-- <div class="list"></div> -->
+  <ul>
+
+  </ul>
+
+
+  <script>
+    // require electron and ipcRenderer
+    const electron = require('electron');
+    const {ipcRenderer } = electron;
+    // listen for todo:add from Electron App
+    ipcRenderer.on('todo:add', (event, todo) => {
+      console.log(todo);
+      const li = document.createElement('li');
+      const text = document.createTextNode(todo);
+      li.appendChild(text);
+      document.querySelector('ul').appendChild(li);
+    });
+
+  </script>
 </body>

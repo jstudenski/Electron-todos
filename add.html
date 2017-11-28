@@ -15,16 +15,15 @@
   <script>
     // require electron and ipcRenderer
     const electron = require('electron');
-    const {ipcRenderer } = electron;
+    const {ipcRenderer} = electron;
 
     // when form is submitted..
     document.querySelector('form').addEventListener ('submit', (event) => {
       event.preventDefault();
       // get input
-      const { value } = document.querySelector('input').value;
+      const { value } = document.querySelector('input');
       // send input to Electron App
       ipcRenderer.send('todo:add', value)
     });
-
   </script>
 </body>
