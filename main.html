@@ -1,23 +1,25 @@
 <head>
   <style>
     button {
-      color:#fff;
-      width: 35px;
-      height: 35px;
+      width: 34px;
+      height: 34px;
+      padding: 5px;
       border: none;
       position: fixed;
       top: 5px;
       outline: none; 
       border-radius: 3px;
-      padding: 0px;
+      color:#fff;
     }
-    #refresh {right: 45px;
+    #refresh {right: 44px;
       background-color: #9c9c9c;
     }
     #devTools {right: 5px;
       background-color: #d4d4d4;
     }
-
+    #addTask {left: 5px;
+      background-color: #2ecc71;
+    }
     button img {
       width: 24px;
     }
@@ -25,12 +27,14 @@
   </style>
 </head>
 <body>
+  <br>
 	<h2>My Todos</h2>
   <ul>
   </ul>
 
   <button id="refresh"><img src="images/refresh.png"></button>
   <button id="devTools"><img src="images/wrench.png"></button>
+  <button id="addTask"><img src="images/plus.png"></button>
 
   <script>
     // require electron and ipcRenderer
@@ -52,7 +56,9 @@
     document.getElementById('devTools').addEventListener ('click', (event) => {
       ipcRenderer.send('devTools:button')
     });
-
+    document.getElementById('addTask').addEventListener ('click', (event) => {
+      ipcRenderer.send('addTask:button')
+    });
 
   </script>
 </body>

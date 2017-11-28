@@ -56,6 +56,11 @@ ipcMain.on('devTools:button', (event, todo) => {
   mainWindow.toggleDevTools();
 });
 
+ipcMain.on('addTask:button', (event, todo) => {
+  createAddWindow();
+});
+
+
 
 
 
