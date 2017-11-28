@@ -2,7 +2,7 @@
 // npm run electron
 
 const electron = require('electron');
-const { app, BrowserWindow, Menu } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 //initialize variables
 let mainWindow;
@@ -35,7 +35,17 @@ function createAddWindow() {
   });
   // populate window with add.html
   addWindow.loadURL(`file://${__dirname}/add.html`);
+  // garbage collect
+  addWindow.on('closed', () => addWindow = null);
 }
+
+// listen for event (from add.html)
+ipcMain.on('todo:add', (event, todo) => {
+  // send to mainWindow
+  mainWindow.webContents.send('todo:add', todo);
+  // close add window
+  addWindow.close();
+});
 
 
 // menu template
@@ -79,7 +89,6 @@ if (process.env.NODE_ENV !== 'production') {
       ]
   });
 }
-
 
 // 'production'
 // 'development'

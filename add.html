@@ -1,4 +1,6 @@
 <head>
+  <style>
+  </style>
 </head>
 <body>
   <form>
@@ -11,11 +13,17 @@
 
 
   <script>
-    // when form is submitted..
-    document.querySelecrot('form').addEventListener ('submit', (event) => {
-      event.preventDefault();
+    // require electron and ipcRenderer
+    const electron = require('electron');
+    const {ipcRenderer } = electron;
 
-      debugger;
+    // when form is submitted..
+    document.querySelector('form').addEventListener ('submit', (event) => {
+      event.preventDefault();
+      // get input
+      const { value } = document.querySelector('input').value;
+      // send input to Electron App
+      ipcRenderer.send('todo:add', value)
     });
 
   </script>
