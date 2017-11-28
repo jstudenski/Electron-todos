@@ -1,4 +1,4 @@
-// npm run todos
+// npm run electron
 
 const electron = require('electron');
 const { app, BrowserWindow, Menu } = electron;
@@ -25,9 +25,10 @@ const menuTemplate = [
 {
 	label: 'File', // single menu bar drop down item
 	submenu: [
-		{ label: 'New Todo'},
+		{ label: 'New Todo' },
 		{  
       label: 'Quit',
+      accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q', // Hot Keys: if mac, else pc
       click() {
         app.quit();
       }
