@@ -14,21 +14,27 @@ app.on('ready', () => {
 	mainWindow = new BrowserWindow({}); // set window config here
 	// load main.html file
 	mainWindow.loadURL(`file://${__dirname}/main.html`);
+  // when main window is closed, close everything
+  mainWindow.on('closed', () => app.quit());
+
+
 	// buildFronTemplate helper
 	const mainMenu = Menu.buildFromTemplate(menuTemplate);
 	// create menu from build
 	Menu.setApplicationMenu(mainMenu);
 });
 
-
-
+// function to be called by 'New Todo' menu button
 function createAddWindow() {
+  // create new widow
   addWindow = new BrowserWindow({
     width: 300,
     height: 200,
-    backgroundColor: '#2e2c29',
+    backgroundColor: '#f8f8f8',
     title: 'Add New Todo'
   });
+  // populate window with add.html
+  addWindow.loadURL(`file://${__dirname}/add.html`);
 }
 
 
@@ -45,7 +51,7 @@ const menuTemplate = [
       label: 'Quit',
       accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q', // Hot Keys: if mac, else pc
       click() {
-        app.quit();
+        app.quit(); // quit application
       }
 		}
 	]
