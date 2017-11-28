@@ -59,7 +59,39 @@ const menuTemplate = [
 }
 ];
 
-if (process.platform === 'darwin') { // if mac
+ // if mac
+if (process.platform === 'darwin') {
   menuTemplate.unshift({}); // add empty object so 'Electron' menu doesn't dissappear on mac
 }
+
+// if not in production environment
+if (process.env.NODE_ENV !== 'production') {
+  menuTemplate.push({
+    label: 'Developer',
+      submenu: [
+        { 
+          label: 'Toggle Developer Tools',
+          accelerator: process.platform === 'darwin' ? 'Command+Alt+I' : 'Ctrl+Shift+I',
+          click(item, focusedWindow) { // currently selected window
+            focusedWindow.toggleDevTools();
+          }
+        }
+      ]
+  });
+}
+
+
+// 'production'
+// 'development'
+// 'staging'
+// 'test'
+
+
+
+
+
+
+
+
+
 
