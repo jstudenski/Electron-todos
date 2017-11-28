@@ -22,7 +22,11 @@ app.on('ready', () => {
 
 // menu template
 const menuTemplate = [
+//{}, // empty object so Electron doesn't dissappear (mac)
 {
-	label: 'File' // Single Menu Bar Drop Down
+	label: 'File', // single menu bar drop down item
+	submenu: [
+		{ label: 'New Todo'}
+	]
 }
 ];
