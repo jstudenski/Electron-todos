@@ -22,11 +22,21 @@ app.on('ready', () => {
 
 // menu template
 const menuTemplate = [
-//{}, // empty object so Electron doesn't dissappear (mac)
 {
 	label: 'File', // single menu bar drop down item
 	submenu: [
-		{ label: 'New Todo'}
+		{ label: 'New Todo'},
+		{  
+      label: 'Quit',
+      click() {
+        app.quit();
+      }
+		}
 	]
 }
 ];
+
+if (process.platform === 'darwin') { // if mac
+  menuTemplate.unshift({}); // add empty object so 'Electron' menu doesn't dissappear on mac
+}
+
