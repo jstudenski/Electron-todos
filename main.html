@@ -7,6 +7,7 @@
   </ul>
 
   <button id="refresh">Refresh</button>
+  <button id="devTools">Dev Tools</button>
 
   <script>
     // require electron and ipcRenderer
@@ -20,11 +21,12 @@
       document.querySelector('ul').appendChild(li);
     });
 
-
+    // send button signals to Electron App
     document.getElementById('refresh').addEventListener ('click', (event) => {
-      console.log("WORLD");
-      // send signal to Electron App
       ipcRenderer.send('refresh:button')
+    });
+    document.getElementById('devTools').addEventListener ('click', (event) => {
+      ipcRenderer.send('devTools:button')
     });
 
 

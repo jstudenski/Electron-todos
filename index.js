@@ -48,9 +48,12 @@ ipcMain.on('todo:add', (event, todo) => {
 });
 
 
-// listen for refresh:button (from main.html)
+// listen for button clicks (from main.html): 
 ipcMain.on('refresh:button', (event, todo) => {
   mainWindow.reload();
+});
+ipcMain.on('devTools:button', (event, todo) => {
+  mainWindow.toggleDevTools();
 });
 
 
