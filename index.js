@@ -45,6 +45,7 @@ const menuTemplate = [
 	submenu: [
 		{ 
       label: 'New Todo',
+      accelerator: process.platform === 'darwin' ? 'Command+N' : 'Ctrl+N', // Hot Keys: if mac, else pc
       click() { createAddWindow(); }
     },
 		{  
