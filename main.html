@@ -35,22 +35,23 @@
   <ul>
   </ul>
 
-  <button id="refresh"><img src="images/refresh.png"></button>
-  <button id="devTools"><img src="images/wrench.png"></button>
-  <button id="addTask"><img src="images/plus.png"></button>
-  <button id="clear"><img src="images/eraser.png"></button>
+  <button id="refresh" onclick="sendSignal('refresh:btn')"><img src="images/refresh.png"></button>
+  <button id="devTools" onclick="sendSignal('devTools:btn')"><img src="images/wrench.png"></button>
+  <button id="addTask" onclick="sendSignal('addTask:btn')"><img src="images/plus.png"></button>
+  <button id="clear" onclick="clearTodos()"><img src="images/eraser.png"></button>
 
 
   <script>
     // require electron and ipcRenderer
     const electron = require('electron');
     const {ipcRenderer } = electron;
+    const list = document.querySelector('ul');
     // listen for todo:add from Electron App
     ipcRenderer.on('todo:add', (event, todo) => {
       const li = document.createElement('li');
       const text = document.createTextNode(todo);
       li.appendChild(text);
-      document.querySelector('ul').appendChild(li);
+      list.appendChild(li);
     });
 
     // listen for todo:clear from Electron App
@@ -64,20 +65,12 @@
 
 
     function clearTodos() {
-      document.querySelector('ul').innerHTML = '';
+      list.innerHTML = '';
     }
 
-
-    // send button signals to Electron App
-    document.getElementById('refresh').addEventListener ('click', (event) => {
-      ipcRenderer.send('refresh:button')
-    });
-    document.getElementById('devTools').addEventListener ('click', (event) => {
-      ipcRenderer.send('devTools:button')
-    });
-    document.getElementById('addTask').addEventListener ('click', (event) => {
-      ipcRenderer.send('addTask:button')
-    });
+    function sendSignal(signal) {
+      ipcRenderer.send(signal)
+    }
 
   </script>
 </body>

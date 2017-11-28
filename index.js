@@ -49,14 +49,13 @@ ipcMain.on('todo:add', (event, todo) => {
 
 
 // listen for button clicks (from main.html): 
-ipcMain.on('refresh:button', (event, todo) => {
+ipcMain.on('refresh:btn', (event, todo) => {
   mainWindow.reload();
 });
-ipcMain.on('devTools:button', (event, todo) => {
+ipcMain.on('devTools:btn', (event, todo) => {
   mainWindow.toggleDevTools();
 });
-
-ipcMain.on('addTask:button', (event, todo) => {
+ipcMain.on('addTask:btn', (event, todo) => {
   createAddWindow();
 });
 
