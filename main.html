@@ -20,6 +20,9 @@
     #addTask {left: 5px;
       background-color: #2ecc71;
     }
+    #clear {left: 44px;
+      background-color: #e74c3c;
+    }
     button img {
       width: 24px;
     }
@@ -35,6 +38,8 @@
   <button id="refresh"><img src="images/refresh.png"></button>
   <button id="devTools"><img src="images/wrench.png"></button>
   <button id="addTask"><img src="images/plus.png"></button>
+  <button id="clear"><img src="images/eraser.png"></button>
+
 
   <script>
     // require electron and ipcRenderer
@@ -47,6 +52,20 @@
       li.appendChild(text);
       document.querySelector('ul').appendChild(li);
     });
+
+    // listen for todo:clear from Electron App
+    ipcRenderer.on('todo:clear', (event, todo) => {
+      clearTodos();
+    });
+
+    document.getElementById('clear').addEventListener ('click', (event) => {
+      clearTodos();
+    });
+
+
+    function clearTodos() {
+      document.querySelector('ul').innerHTML = '';
+    }
 
 
     // send button signals to Electron App
