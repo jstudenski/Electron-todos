@@ -28,9 +28,8 @@ app.on('ready', () => {
 function createAddWindow() {
   // create new widow
   addWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
-    backgroundColor: '#f8f8f8',
+    width: 220,
+    height: 100,
     title: 'Add New Todo'
   });
   // populate window with add.html
@@ -59,8 +58,14 @@ ipcMain.on('addTask:btn', (event, todo) => {
   createAddWindow();
 });
 
-
-
+ipcMain.on('mkdir:btn', (event, todo) => {
+   var fs = require('fs');
+    fs.mkdir('/Users/jeffstud/Desktop/testfolder');
+    fs.writeFile('/Users/jeffstud/Desktop/testfolder/helloworld.txt', 'Hello World!', function (err) {
+    if (err) return console.log(err);
+      console.log('Hello World > helloworld.txt');
+    });
+});
 
 
 // menu template

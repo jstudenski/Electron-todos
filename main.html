@@ -23,6 +23,12 @@
     #clear {left: 44px;
       background-color: #e74c3c;
     }
+    #mkdir {left: 83px;
+      background-color: salmon;
+    }
+    
+
+
     button img {
       width: 24px;
     }
@@ -39,7 +45,7 @@
   <button id="devTools" onclick="sendSignal('devTools:btn')"><img src="images/wrench.png"></button>
   <button id="addTask" onclick="sendSignal('addTask:btn')"><img src="images/plus.png"></button>
   <button id="clear" onclick="clearTodos()"><img src="images/eraser.png"></button>
-
+  <button id="mkdir" onclick="sendSignal('mkdir:btn')">dir</button>
 
   <script>
     // require electron and ipcRenderer
@@ -71,6 +77,8 @@
     function sendSignal(signal) {
       ipcRenderer.send(signal)
     }
+
+
 
   </script>
 </body>
